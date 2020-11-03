@@ -1,6 +1,6 @@
 plugins: "rabbitmq_management"
 
-rabbitmq:
+auth:
   username: admin
   password: secretpassword
 
