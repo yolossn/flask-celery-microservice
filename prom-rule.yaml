@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: celery-messages-unacknowledged
+  labels:
+    app: kube-prometheus-stack
+    release: monitoring
+spec:
+  groups:
+    - name: celery_messages_unacknowledged
+      rules:
+        - record: celery_messages_unacknowledged
+          expr: rabbitmq_queue_messages_unacknowledged{queue="celery"}
+          labels:
+            name: celery-worker

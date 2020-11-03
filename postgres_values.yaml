@@ -1,0 +1,11 @@
+global:
+  postgresql:
+    postgresqlDatabase: flask-service
+    postgresqlUsername: test
+    postgresqlPassword: test@123
+
+volumePermissions:
+  enabled: true
+
+persistence:
+  size: "2Gi"
