@@ -6,6 +6,3 @@ global:
 
 volumePermissions:
   enabled: true
-
-persistence:
-  size: "2Gi"

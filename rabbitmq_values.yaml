@@ -4,16 +4,5 @@ auth:
   username: admin
   password: secretpassword
 
-persistence:
-  size: 2Gi
-
 volumePermissions:
   enabled: true
-
-metrics:
-  enabled: true
-  serviceMonitor:
-    enabled: true
-    namespace: monitoring
-    additionalLabels:
-      release: monitoring
