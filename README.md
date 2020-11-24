@@ -4,7 +4,7 @@
 # Install
 ### rabbitmq 
 
-> helm install rabbitmq -f rabbitmq_values.yaml bitnami/rabbitmq
+> helm install rabbitmq -f rabbitmq_values.yaml bitnami/rabbitmq -n rabbitmq --create-namespace
 
 ```yaml
 plugins: "rabbitmq_management"
@@ -19,7 +19,7 @@ volumePermissions:
 
 ### postgres
 
-> helm install postgres -f postgres_values.yaml bitnami/postgresql
+> helm install postgres -f postgres_values.yaml bitnami/postgresql -n postgres --create-namespace
 
 ```yaml
 global:
