@@ -1,8 +1,0 @@
-plugins: "rabbitmq_management"
-
-auth:
-  username: admin
-  password: secretpassword
-
-volumePermissions:
-  enabled: true

@@ -1,0 +1,67 @@
+---
+# namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: rabbitmq
+---
+# secret
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rabbitmq-secret
+  namespace: rabbitmq
+type: Opaque
+data:
+  RABBITMQ_DEFAULT_USER: YWRtaW4=
+  RABBITMQ_DEFAULT_PASS: c2VjcmV0cGFzc3dvcmQ=
+---
+# deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq
+  namespace: rabbitmq
+  labels:
+    name: rabbitmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: rabbitmq
+  template:
+    metadata:
+      labels:
+        name: rabbitmq
+    spec:
+      containers:
+      - name: rabbitmq
+        image: rabbitmq:3.6.8-management
+        envFrom:
+            - secretRef:
+                name: rabbitmq-secret
+        ports:
+        - containerPort: 15672
+          name: management
+        - containerPort: 5672
+          name: rabbitmq
+---
+# service
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq
+  namespace: rabbitmq
+  labels:
+    name: rabbitmq
+spec:
+  selector:
+    name: rabbitmq
+  ports:
+  - port: 5672
+    name: rabbitmq
+    targetPort: rabbitmq
+    protocol: TCP
+  - port: 15672
+    name: rabbitmq-mgmt
+    targetPort: management
