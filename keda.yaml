@@ -2,6 +2,7 @@ apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
   name: celery-worker-scaler
+  namespace: celery-workers
 spec:
   scaleTargetRef:
     name: celery-worker
@@ -20,8 +21,9 @@ apiVersion: keda.sh/v1alpha1
 kind: TriggerAuthentication
 metadata:
   name: rabbitmq-worker-trigger
+  namespace: celery-workers
 spec:
   secretTargetRef:
     - parameter: host
-      name: flask-secret
+      name: celery-workers-secret
       key: CELERY_BROKER_URL
