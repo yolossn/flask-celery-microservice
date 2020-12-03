@@ -5,6 +5,7 @@ click==7.1.2
 click-didyoumean==0.0.3
 click-repl==0.1.6
 Flask==1.1.2
+gunicorn==20.0.4
 itsdangerous==1.1.0
 Jinja2==2.11.2
 kombu==5.0.2

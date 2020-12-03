@@ -8,7 +8,7 @@ from app.tasks import *
 def health():
     return jsonify({"state":"healthy"})
 
-@app.route('/report')
+@app.route('/report', methods=['POST'])
 def generate_report():
     async_result = report.delay()
     return jsonify({"report_id":async_result.id})

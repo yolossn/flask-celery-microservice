@@ -13,5 +13,5 @@ RUN pip install -r requirements.txt
 # Copy code
 COPY . /app/
 
-CMD python3 main.py  
+CMD gunicorn --workers 10 --bind 0.0.0.0:5000 --log-level DEBUG main:app
 
