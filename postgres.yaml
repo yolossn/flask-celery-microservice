@@ -1,0 +1,61 @@
+---
+# namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: postgres
+---
+# secret
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-secret
+  namespace: postgres
+type: Opaque
+data:
+  POSTGRES_USER: dGVzdA==
+  POSTGRES_DB: Zmxhc2stc2VydmljZQ==
+  POSTGRES_PASSWORD: dGVzdEAxMjM=
+---
+# deploy
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgresql
+  namespace: postgres
+  labels:
+    name: postgresql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: postgresql
+  template:
+    metadata:
+      labels:
+        name: postgresql
+    spec:
+      containers:
+        - image: postgres:9.6.2-alpine
+          name: postgresql
+          envFrom:
+            - secretRef:
+                name: postgres-secret
+          ports:
+            - containerPort: 5432
+              name: postgresql
+---
+# service
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresql
+  namespace: postgres
+  labels:
+    name: postgresql
+spec:
+  ports:
+    - port: 5432
+  selector:
+    name: postgresql
+---
