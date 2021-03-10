@@ -30,6 +30,3 @@ class reportService(HttpUser):
         output = self.check_status(resp["report_id"])
         print("done")
     
-    @task
-    def generate_flow(self):
-        self.generate_report()
