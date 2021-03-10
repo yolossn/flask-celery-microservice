@@ -4,6 +4,10 @@ from celery.result import AsyncResult
 from app.tasks import *
 
 
+@app.route('/')
+def default():
+    return "Welcome to Report Service"
+
 @app.route('/health')
 def health():
     return jsonify({"state":"healthy"})
