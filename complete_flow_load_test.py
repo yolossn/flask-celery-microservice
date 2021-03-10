@@ -1,7 +1,9 @@
-from locust import HttpUser, task
+from locust import HttpUser, task, constant
 
 
 class reportService(HttpUser):
+
+    wait_time = constant(1)
     
     def generate_report(self):
         resp = self.client.post("report")
