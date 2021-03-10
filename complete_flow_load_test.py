@@ -31,5 +31,3 @@ class reportService(HttpUser):
     @task
     def generate_flow(self):
         self.generate_report()
-
-    
