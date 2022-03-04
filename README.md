@@ -42,4 +42,34 @@ giuliohome@cloudshell:~/flask-celery-microservice (my-cloud-giulio)$ curl http:/
 
 # celery worker running on Google Cloud
 
+Just run a dockerized locust load testing
+```
+docker run -p 8089:8089 \
+  -v $PWD:/mnt/locust \
+  locustio/locust -f /mnt/locust/generate_flow_load_test.py
+```
+
+Simply use the cloud shell web preview on port 8089
+
 ![immagine](https://user-images.githubusercontent.com/3272563/156769262-f91b740e-f20c-4ad8-9cec-fb730d6c9d40.png)
+
+# debugging postgres pod
+
+First, you have to forward the pod port to the cloud shell
+```
+gcloud container clusters get-credentials my-cloud-giulio-dev-v1-mytf --region us-central1 --project my-cloud-giulio  && kubectl port-forward --namespace postgres $(kubectl get pod --namespace postgres --selector="name=postgresql" --output jsonpath='{.items[0].metadata.name}') 5432:5432
+```
+ run it in background or open another terminal and connect via psql
+
+``` 
+psql -h localhost -U test -d flask-service
+```
+
+then you can query the database
+```
+ flask-service=# SELECT * FROM celery_taskmeta where task_id='092b8d52-2118-44b8-b7dd-19410975648e';
+ id |               task_id                | status  |                                  result                                  |         date_done          | traceback | name | args | kwargs | worker | retries | queue
+----+--------------------------------------+---------+--------------------------------------------------------------------------+----------------------------+-----------+------+------+--------+--------+---------+-------
+ 15 | 092b8d52-2118-44b8-b7dd-19410975648e | SUCCESS | \x80059518000000000000007d948c057374617465948c09636f6d706c6574656494732e | 2022-03-04 11:18:45.167577 |           |      |      |        |        |         |
+(1 row)
+```
