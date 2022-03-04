@@ -39,3 +39,7 @@ giuliohome@cloudshell:~/flask-celery-microservice (my-cloud-giulio)$ curl http:/
 giuliohome@cloudshell:~/flask-celery-microservice (my-cloud-giulio)$ curl http://34.111.210.242/report/10dd7a1f-a8a0-4b13-8a94-19cb582208dd
 {"id":"10dd7a1f-a8a0-4b13-8a94-19cb582208dd","result":{"state":"completed"}}
 ```
+
+# celery worker running on Google Cloud
+
+![immagine](https://user-images.githubusercontent.com/3272563/156769262-f91b740e-f20c-4ad8-9cec-fb730d6c9d40.png)
