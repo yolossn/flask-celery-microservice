@@ -1,0 +1,14 @@
+---
+apiVersion: "networking.k8s.io/v1"
+kind: "Ingress"
+metadata:
+  name: "gke-tf-ingress"
+  namespace: "flask-backend"
+spec:
+  defaultBackend:
+    service:
+      name: "flask-server"
+      port:
+        number: 80
+status:
+  loadBalancer: {}

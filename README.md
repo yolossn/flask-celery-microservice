@@ -23,3 +23,19 @@ See the author's article [Scaling Celery workers with RabbitMQ on Kubernetes](ht
 *What if your task is really long and you don't want to stop it at all?*
 
 > You should not use a Deployment (or ReplicaSet, or StatefulSet, etc.) but create individual Pods with an operator or use Kubernetes jobs.
+
+# porting to Google Cloud
+
+Done:
+
+- you can use the ingress instead of kubectl port forwarding 
+- notice also the header if you need to test by curl
+
+```
+giuliohome@cloudshell:~/flask-celery-microservice (my-cloud-giulio)$ curl -d "" -X POST  http://34.111.210.242/report
+{"report_id":"10dd7a1f-a8a0-4b13-8a94-19cb582208dd"}
+giuliohome@cloudshell:~/flask-celery-microservice (my-cloud-giulio)$ curl http://34.111.210.242/report/10dd7a1f-a8a0-4b13-8a94-19cb582208dd
+{"id":"10dd7a1f-a8a0-4b13-8a94-19cb582208dd","result":null}
+giuliohome@cloudshell:~/flask-celery-microservice (my-cloud-giulio)$ curl http://34.111.210.242/report/10dd7a1f-a8a0-4b13-8a94-19cb582208dd
+{"id":"10dd7a1f-a8a0-4b13-8a94-19cb582208dd","result":{"state":"completed"}}
+```
