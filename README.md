@@ -77,9 +77,15 @@ then you can query the database
 
 Another option is to [debug a pod](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/), e.g
 
+```
 kubectl exec -it --namespace postgres postgresql-55566b698b-xdmzt -- sh
+```
 
-or to spin up an ephemeral debug container (with [net tools](https://github.com/nicolaka/netshoot))
+or to spin up an ephemeral debug container, e.g. with [net tools](https://github.com/nicolaka/netshoot)
+
+```
+kubectl run tmp-shell --rm -i --tty --image nicolaka/netshoot -- /bin/bash
+```
 
 ## Announcement
 
