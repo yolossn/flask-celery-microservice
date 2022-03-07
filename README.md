@@ -75,6 +75,12 @@ then you can query the database
 (1 row)
 ```
 
+Another option is to [debug a pod](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/), e.g
+
+kubectl exec -it --namespace postgres postgresql-55566b698b-xdmzt -- sh
+
+or to spin up an ephemeral debug container (with [net tools](https://github.com/nicolaka/netshoot))
+
 ## Announcement
 
 ![](https://github.com/kgrzybek/modular-monolith-with-ddd/raw/master/docs/Images/glory_to_ukraine.jpg)
