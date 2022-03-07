@@ -28,7 +28,8 @@ See the author's article [Scaling Celery workers with RabbitMQ on Kubernetes](ht
 
 Done:
 
-- you can use the ingress instead of kubectl port forwarding 
+- you can build the cluster with terraform on gcloud: see this [k8s](https://github.com/giuliohome/gcp-k8s-sql-tf/tree/main/k8s) folder.
+- you can use the [ingress](ingress.yaml) instead of kubectl port forwarding 
 - notice also the header if you need to test by curl
 
 ```
